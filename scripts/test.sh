@@ -87,7 +87,7 @@ for i in ${!PLATFORMS[@]}; do
 	else
 		logSubTitle "Testing index page"
 		testOut=$(curl -s --connect-timeout 5 --max-time 10 --retry 3 --retry-delay 1 --retry-max-time 30 http://localhost:$webPort/ |sed -n 5p |awk '{$1=$1};1')
-		if [ "$testOut" != "<title>123Solar & meterN</title>" ]; then
+		if [ "$testOut" != "<title>meterN</title>" ]; then
 			logError "Error: Index page differs"
 			logDetail "Web server returned:"
 			logDetail "$testOut"
@@ -112,18 +112,6 @@ for i in ${!PLATFORMS[@]}; do
 		logNormal "[OK] sdm120c match"
 
 
-		logSubTitle "Testing aurora exec"
-		testOut=$(docker exec -ti $containerId aurora -V |sed -n 3p)
-		testOutParsed=$(echo $testOut |cut -d ':' -f1 |awk '{$1=$1};1')
-		if [ "$testOutParsed" != "Main module" ]; then
-			logError "Error: wrong return"
-			logDetail "Command returned:"
-			logDetail "$testOut"
-			logError "Aborting..."
-			docker stop $containerId
-			exit 1;
-		fi
-		logNormal "[OK] aurora match"
 	fi
 	
 	docker stop $containerId

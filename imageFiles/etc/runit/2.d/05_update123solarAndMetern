@@ -1,4 +1,4 @@
 #!/bin/bash
 
-logger -t "2.d update123solarAndMetern" "Check and update 123Solar and meterN"
-/var/www/scripts/update123solarAndMetern.sh
+logger -t "2.d updatedMetern" "Check and update meterN"
+/var/www/scripts/updateMetern.sh

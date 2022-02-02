@@ -122,8 +122,6 @@ cmdRun+=" --platform=linux/$PLATFORM"
 if [ -n "$qemuFile" ]; then
 	cmdRun+=" --volume $(pwd)/build_tmp/qemu/$qemuFile:/usr/bin/$qemuFile"
 fi
-cmdRun+=" --volume 123solar_config:/var/www/123solar/config"
-cmdRun+=" --volume 123solar_data:/var/www/123solar/data"
 cmdRun+=" --volume metern_config:/var/www/metern/config"
 cmdRun+=" --volume metern_data:/var/www/metern/data"
 cmdRun+=" --publish-all"
